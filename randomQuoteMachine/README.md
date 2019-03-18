@@ -2,6 +2,6 @@
 
 A random quote generator, with randomized background and border colors every time a new quote is generated.
 
-[On Codepen](https://codepen.io/InaSL/full/BbxEqP)
+[Demo and code](https://codepen.io/InaSL/full/BbxEqP)
 
 Tech stacks: React, Redux, jQuery & Axios
