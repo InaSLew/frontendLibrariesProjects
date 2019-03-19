@@ -6,7 +6,7 @@ The projects' demos live on Codepen.
 
 ## Status:
 - [x] Random Quote Machine
-- [ ] Markdown Previewer
+- [x] Markdown Previewer
 - [ ] Drum Machine
 - [ ] Javascript Calculator
 - [ ] Pomodoro Clock
