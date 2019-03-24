@@ -8,5 +8,5 @@ The projects' demos live on Codepen.
 - [x] Random Quote Machine
 - [x] Markdown Previewer
 - [x] Drum Machine
-- [ ] Javascript Calculator
+- [x] Javascript Calculator
 - [ ] Pomodoro Clock
