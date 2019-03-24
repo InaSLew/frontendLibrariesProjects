@@ -7,11 +7,9 @@
 
 const parseMathExpression = (expression) => {
     
-    const multiplyRegex = /(\d)\*(\d)/g, divideRegex = /(\d)\/(\d)/g;
+    const multiplyRegex = /(\d\.*\d*)\*(\d\.*\d*)/g, divideRegex = /(\d\.*\d*)\/(\d\.*\d*)/g;
     const onlyAdditionAndSubtraction = expression.replace(multiplyRegex, (match,p1,p2) => match.replace(multiplyRegex, +p1 * +p2)).replace(divideRegex, (match,p1,p2) => match.replace(divideRegex, +p1 / +p2));
     const parseBySubtraction = (expression) => expression.split("-").map(numstr => +numstr).reduce((acc,val) => acc - val);
     
     return onlyAdditionAndSubtraction.split("+").map(numstr => parseBySubtraction(numstr)).reduce((acc,val) => acc+val)
 }
-
-console.log(parseMathExpression("3+5*6+5*6-2/4+2/4"));
