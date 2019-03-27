@@ -9,4 +9,4 @@ The projects' demos live on Codepen.
 - [x] Markdown Previewer
 - [x] Drum Machine
 - [x] Javascript Calculator
-- [ ] Pomodoro Clock
+- [x] Pomodoro Clock
