@@ -4,9 +4,11 @@ This repo contains my solutions to the projects that are required to claim [free
 ## Format
 The projects' demos live on Codepen.
 
-## Status:
+## Status: Complete
 - [x] Random Quote Machine
 - [x] Markdown Previewer
 - [x] Drum Machine
 - [x] Javascript Calculator
 - [x] Pomodoro Clock
+
+[View the certificate here](https://www.freecodecamp.org/certification/inasl/front-end-libraries)
