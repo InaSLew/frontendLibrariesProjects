@@ -1,17 +1,21 @@
+body {
+  font-family: "Exo", sans-serif;
+}
+
 .pomodoro-clock {
-  font-size: 1rem;
-  margin-top: 10%;
-  margin-left: auto;
-  margin-right: auto;
+  border: solid;
+  border-radius: 25px;
+  margin: auto;
   padding: 50px;
   background-color: #FFFFFF;
-  width: 80%;
-  min-width: 600px;
+  height: 500px;
+  width: 50%;
+  min-width: 450px;
   text-align: center;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-template-areas: ". . . . . . . ." ". break break . . session session ." ". . . timer timer . . ." ". . . start-stop reset . . ." ". . . . . . . .";
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas: ". break break . . session session ." ". . . timer timer . . ." ". . . start-stop reset . . .";
 }
 
 .break {
@@ -48,6 +52,31 @@
 
 .session-minus {
   margin: 5px;
+}
+
+@media only screen and (max-width: 450px) {
+  body {
+    background-color: black;
+    color: white;
+  }
+
+  .pomodoro-clock {
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border: hidden;
+    min-width: 300px;
+    width: 100%;
+  }
+
+  .break .session .timer {
+    margin-bottom: 30px;
+  }
+
+  .mobile-btns {
+    color: white;
+  }
 }
 
 /*# sourceMappingURL=PomodoroClock.css.map */

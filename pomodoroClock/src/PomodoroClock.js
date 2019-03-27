@@ -13,7 +13,7 @@ class PomodoroClock extends Component {
       isTimerOn: false,
       sessionLgh: 25,
       breakLgh: 5,
-      minutes: 25,
+      minutes: 0,
       seconds: 0,
       pausedAt: ""
     }
@@ -27,7 +27,8 @@ class PomodoroClock extends Component {
   }
 
   resetTimer() {
-    console.log("in Reset")
+    this.beep.pause();
+    this.beep.currentTime = 0;
     this.setState({
       cycle: "Session",
       isTimerOn: false,
@@ -41,84 +42,113 @@ class PomodoroClock extends Component {
   }
 
   breakIncrement () {
-    this.state.breakLgh < 60 && this.setState({
-      breakLgh: this.state.breakLgh + 1
-    });
+    if (!this.state.isTimerOn) {
+      this.state.breakLgh < 60 && this.setState({
+        breakLgh: this.state.breakLgh + 1,
+        pausedAt: ""
+      });
+    }
   }
 
   breakDecrement () {
-    this.state.breakLgh > 1 && this.setState({
-      breakLgh: this.state.breakLgh - 1
-    });
+    if (!this.state.isTimerOn) {
+      this.state.breakLgh > 1 && this.setState({
+        breakLgh: this.state.breakLgh - 1,
+        pausedAt: ""
+      });
+    }
   }
 
   sessionIncrement () {
-    this.state.sessionLgh < 60 && this.setState({
-      sessionLgh: this.state.sessionLgh + 1
-    });
+    if (!this.state.isTimerOn) {
+      this.state.sessionLgh < 60 && this.setState({
+        sessionLgh: this.state.sessionLgh + 1,
+        pausedAt: ""
+      });
+    }
   }
 
   sessionDecrement () {
-    this.state.sessionLgh > 1 && this.setState({
-      sessionLgh: this.state.sessionLgh - 1
-    });
+    if (!this.state.isTimerOn) {
+      this.state.sessionLgh > 1 && this.setState({
+        sessionLgh: this.state.sessionLgh - 1,
+        pausedAt: ""
+      });
+    }
   }
 
   controlTimer () {
-    console.log("clicked");
     this.setState({
       isTimerOn: !this.state.isTimerOn
     });
   }
 
   theTimer() {
-    console.log("heyo");
-    this.secondsRemaining = this.state.sessionLgh * 60;
+    this.secondsRemaining = (this.state.pausedAt === "" ? (this.state.cycle === "Session" ? this.state.sessionLgh * 60 : this.state.breakLgh * 60) : this.state.pausedAt)
     if (!this.state.isTimerOn) {
-      console.log("Timer goes off")
       this.controlTimer();
+      this.setState({
+        minutes: this.state.cycle === "Session" ? this.state.sessionLgh : this.state.breakLgh,
+        seconds: 0
+      });
       this.timer = setInterval(() => {
         this.secondsRemaining -= 1;
+        if (this.secondsRemaining < 0) {
+          this.setState({
+            cycle: this.state.cycle === "Session" ? "Break" : "Session",
+            pausedAt: ""
+          });
+          this.secondsRemaining = (this.state.cycle === "Session" ? this.state.sessionLgh : this.state.breakLgh) * 60
+        }
+        if (!this.secondsRemaining) {
+          this.beep.play();
+        }
         let mins = Math.floor(this.secondsRemaining / 60), secs = this.secondsRemaining - (mins * 60);
         this.setState({
           minutes: mins,
-          seconds: secs
+          seconds: secs,
+          pausedAt: this.secondsRemaining
         });
       }, 1000)
     } else {
-      console.log("Timer turned off")
       this.controlTimer();
       clearInterval(this.timer);
     }
-
   }
+
   componentDidMount () {
+    this.setState({
+      minutes: this.state.sessionLgh,
+      seconds: 0
+    });
     document.getElementById("start_stop").addEventListener("click", () => {
       this.theTimer();
     });
+    this.beep = document.getElementById("beep");
   }
   
   render() {
-    // console.log("rendered");
     return (
       <div id="pomodoro-clock" className="pomodoro-clock container">
-      <Break
-        breakLgh={this.state.breakLgh}
-        breakIncrement={this.breakIncrement}
-        breakDecrement={this.breakDecrement} />
-      <Session
-        sessionLgh={this.state.sessionLgh}
-        sessionIncrement={this.sessionIncrement}
-        sessionDecrement={this.sessionDecrement} />
-      <Timer
-        minutes={this.state.minutes}
-        seconds={this.state.seconds}
-        resetTimer={this.resetTimer}
-        cycle={this.state.cycle} />
+        <Break
+          breakLgh={this.state.breakLgh}
+          breakIncrement={this.breakIncrement}
+          breakDecrement={this.breakDecrement} />
+        <Session
+          sessionLgh={this.state.sessionLgh}
+          sessionIncrement={this.sessionIncrement}
+          sessionDecrement={this.sessionDecrement} />
+        <Timer
+          minutes={this.state.minutes}
+          seconds={this.state.seconds}
+          resetTimer={this.resetTimer}
+          cycle={this.state.cycle} />
+        <audio id="beep" src="https://onlineclock.net/audio/options/default.mp3">
+          Your browser does not support the <code>audio</code> element.
+        </audio>
       </div>
       );
     }
   }
   
-  export default PomodoroClock;
-  
+export default PomodoroClock;  
