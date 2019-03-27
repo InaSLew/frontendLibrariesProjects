@@ -1,0 +1,53 @@
+.pomodoro-clock {
+  font-size: 1rem;
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 50px;
+  background-color: #FFFFFF;
+  width: 80%;
+  min-width: 600px;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-areas: ". . . . . . . ." ". break break . . session session ." ". . . timer timer . . ." ". . . start-stop reset . . ." ". . . . . . . .";
+}
+
+.break {
+  grid-area: break;
+}
+
+.session {
+  grid-area: session;
+}
+
+.timer {
+  grid-area: timer;
+}
+
+.start-stop {
+  grid-area: start-stop;
+}
+
+.reset {
+  grid-area: reset;
+}
+
+.break-plus {
+  margin: 5px;
+}
+
+.break-minus {
+  margin: 5px;
+}
+
+.session-plus {
+  margin: 5px;
+}
+
+.session-minus {
+  margin: 5px;
+}
+
+/*# sourceMappingURL=PomodoroClock.css.map */
