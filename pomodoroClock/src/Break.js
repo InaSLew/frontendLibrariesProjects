@@ -7,7 +7,7 @@ const Break = (props) => {
             <div id="break-length" className="h4">{props.breakLgh}</div>
             <button
                 id="break-increment"
-                className="break-plus btn"
+                className="break-plus btn btn-link"
                 aria-label="Increment Break time by one minute"
                 onClick={props.breakIncrement}>
                 <span className="mobile-btns">
@@ -16,7 +16,7 @@ const Break = (props) => {
             </button>
             <button
                 id="break-decrement"
-                className="break-minus btn"
+                className="break-minus btn btn-link"
                 aria-label="Decrement Break time by one minute"
                 onClick={props.breakDecrement}>
                 <span className="mobile-btns">

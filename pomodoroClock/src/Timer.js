@@ -9,7 +9,7 @@ const Timer = (props) => {
             </div>
             <button
                 id="start_stop"
-                className="start-stop btn"
+                className="start-stop btn btn-link"
                 aria-label="Play and pause the clock"
                 onClick={props.controlTimer}>
                 <span className="mobile-btns">
@@ -18,7 +18,7 @@ const Timer = (props) => {
             </button>
             <button
                 id="reset"
-                className="reset btn"
+                className="reset btn btn-link"
                 aria-label="Reset the clock to default state"
                 onClick={props.resetTimer}>
                 <span className="mobile-btns">

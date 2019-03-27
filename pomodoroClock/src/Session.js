@@ -7,7 +7,7 @@ const Session = (props) => {
             <div id="session-length" className="h4">{props.sessionLgh}</div>
             <button
                 id="session-increment"
-                className="session-plus btn"
+                className="session-plus btn btn-link"
                 aria-label="Increment Session time by one minute"
                 onClick={props.sessionIncrement}>
                 <span className="mobile-btns">
@@ -16,7 +16,7 @@ const Session = (props) => {
             </button>
             <button
                 id="session-decrement"
-                className="session-minus btn"
+                className="session-minus btn btn-link"
                 aria-label="Decrement Session time by one minute"
                 onClick={props.sessionDecrement}>
                 <span className="mobile-btns">

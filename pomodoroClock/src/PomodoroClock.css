@@ -2,6 +2,10 @@ body {
   font-family: "Exo", sans-serif;
 }
 
+.btn-link, .btn-link:hover {
+  color: black;
+}
+
 .pomodoro-clock {
   border: solid;
   border-radius: 25px;
